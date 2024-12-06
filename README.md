@@ -9,4 +9,5 @@ pip install -r requirments.txt
 ```
 ## Run the application
 
-``` python3 app.py
+```bash
+ python3 app.py
