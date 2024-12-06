@@ -1,1 +1,3 @@
-# rag_web
+# AI chat bot in Bangla and English for Nagorik Assesment 
+
+
