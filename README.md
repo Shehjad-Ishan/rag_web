@@ -2,4 +2,5 @@
 
 ## Installation
 
-```bash git clone https://github.com/Shehjad-Ishan/rag_web.git
+```bash
+git clone https://github.com/Shehjad-Ishan/rag_web.git
