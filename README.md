@@ -20,3 +20,5 @@ ollama pull llama3
 
 ```
 ### The application will be hosted on load sever with port :  http://127.0.0.1:5000
+
+![Example Image] Screenshot 2024-12-04 163911.png
