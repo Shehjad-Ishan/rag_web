@@ -1,0 +1,8 @@
+flask
+flask-cors
+ollama
+pymilvus
+sentence-transformers
+PyPDF2
+langchain
+unstructured
