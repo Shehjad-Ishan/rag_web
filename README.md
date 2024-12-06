@@ -2,4 +2,5 @@
 
 ## Installation
 
-``` pip install -r requirements.txt ```
+``` git clone https://github.com/Shehjad-Ishan/rag_web.git
+pip install -r requirements.txt ```
