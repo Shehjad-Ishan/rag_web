@@ -4,3 +4,4 @@
 
 ```bash
 git clone https://github.com/Shehjad-Ishan/rag_web.git
+cd rag_web
