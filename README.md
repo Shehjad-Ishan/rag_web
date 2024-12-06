@@ -19,7 +19,7 @@ ollama pull llama3
  python app.py
 
 ```
-### The application will be hosted on load sever with port :  http://127.0.0.1:5000
+### The application will be hosted on local sever with port :  http://127.0.0.1:5000
 
 ![Example Image](demo.png)
 
