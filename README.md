@@ -7,3 +7,6 @@ git clone https://github.com/Shehjad-Ishan/rag_web.git
 cd rag_web
 pip install -r requirments.txt
 ```
+## Run the application
+
+``` python3 app.py
