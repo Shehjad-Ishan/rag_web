@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAG System Interface for Nagorik</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+        input[type="file"] {
+            margin-bottom: 10px;
+        }
+        .messages {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            height: 200px;
+            overflow-y: auto;
+        }
+        .message {
+            margin-bottom: 5px;
+        }
+        .message.user {
+            text-align: right;
+        }
+        button {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>RAG System for Nagorik</h1>
+
+        <!-- Upload Section -->
+        <h2>Upload Document</h2>
+        <input type="file" id="document" />
+        <button onclick="uploadDocument()">Upload</button>
+        <p id="upload-status"></p>
+
+        <!-- Chat Section -->
+        <h2>Chat</h2>
+        <div class="messages" id="messages"></div>
+        <input type="text" id="query" placeholder="Enter your question..." />
+        <button onclick="sendQuery()">Send</button>
+    </div>
+
+    <script>
+        function uploadDocument() {
+            const fileInput = document.getElementById("document");
+            const file = fileInput.files[0];
+            if (!file) {
+                alert("Please select a file to upload.");
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append("file", file);
+
+            fetch("http://localhost:5000/upload", {
+                method: "POST",
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("upload-status").textContent = data.message || data.error;
+            })
+            .catch(error => {
+                console.error("Error uploading document:", error);
+            });
+        }
+
+        function sendQuery() {
+            const query = document.getElementById("query").value;
+            if (!query) {
+                alert("Please enter a query.");
+                return;
+            }
+
+            fetch("http://localhost:5000/chat", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ query: query }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                const messagesDiv = document.getElementById("messages");
+                const userMessage = document.createElement("div");
+                userMessage.textContent = `You: ${query}`;
+                userMessage.className = "message user";
+                messagesDiv.appendChild(userMessage);
+
+                const aiMessage = document.createElement("div");
+                aiMessage.textContent = `AI: ${data.response || data.error}`;
+                aiMessage.className = "message";
+                messagesDiv.appendChild(aiMessage);
+
+                document.getElementById("query").value = "";
+            })
+            .catch(error => {
+                console.error("Error sending query:", error);
+            });
+        }
+    </script>
+</body>
+</html>
